@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .models import Note
 from django.utils import timezone
+from django.views.generic.edit import UpdateView, DeleteView
 
 
 @login_required(login_url="/notes/cover")
@@ -38,3 +39,19 @@ def create(request):
 def detail(request, note_id):
     note = get_object_or_404(Note, pk=note_id)
     return render(request, 'notes/detail.html', {'note': note})
+
+
+class NoteUpdateView(UpdateView):
+    model = Note
+    template_name = 'notes/update.html'
+    fields = ['title', 'note']
+    success_url = '/'
+
+    def form_valid(self, form):
+    	instance = form.save()
+    	return redirect('detail', instance.pk)
+
+class NoteDeleteView(DeleteView):
+    model = Note
+    template_name = 'notes/delete.html'
+    success_url = '/'

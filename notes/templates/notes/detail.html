@@ -9,13 +9,14 @@
 		<div class="col-12 text-lg-center card-title"><h1>{{note.title}} </h1></div>
 	</div>
 	<div class="row card-subtitle ">
-		<div class="col text-center"><span><i class="fas fa-calender"> {{note.pub_date_pretty}}</div>
+		<div class="col text-center"><span><i class="fas fa-calender"></i></span> {{note.pub_date_pretty}}</div>
 	</div>
 	<div class="row card-body">
-		<div class="col-12">
+		<div class="col-12 text-center">
 			<p>{{note.note}}</p>
-		</div>	
+			<a href="{% url 'update' note.id %}" class="btn btn-info text-center px-5">Edit</a>
+			<a href="{% url 'delete' note.id %}" class="btn btn-danger px-5 text-center">Delete</a>
 	</div>
-	</div>
-	
+</div>
+</div>
 {% endblock content %}

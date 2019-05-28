@@ -12,17 +12,17 @@
 		<div class="col-12 card-title"><h1>{{note.title}} </h1></div>
 		</div>
 		<div class="row  ">
-			<div class="col-12 card-subtitle"><span><i class="fas fa-calender"></i></span>{{note.pub_date_pretty}}</div>
+			<div class="col-12 card-subtitle"><span><i class="fas fa-clock"></i></span>{{note.date_added}}</div>
 		</div>
 		<div class="row ">
 			<div class="col-12 card-body">
 				<p>{{note.summary}}</p>
 			</div>	
 		</div>
-		<div class="row">
-			<div class="col-4 card-footer">
-				<a href="{% url 'detail' note.id %}" class="btn btn-primary btn-link card-link text-white">View</a>
-			</div>
+		<div class="row text-center">
+				<a href="{% url 'detail' note.id %}" class="btn btn-primary m-2 px-5 text-center">View</a>
+			<a href="{% url 'update' note.id %}" class="btn btn-info m-2 text-center px-5">Edit</a>
+			<a href="{% url 'delete' note.id %}" class="btn btn-danger m-2  px-5 text-center">Delete</a>
 		</div>
 		</div>
 	{% endfor %}
