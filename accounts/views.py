@@ -35,4 +35,6 @@ def login(request):
 
 
 def logout(request):
-    return render(request, 'accounts/signup.html')
+    if request.method == "POST":
+        auth.logout(request)
+        return redirect('cover')
