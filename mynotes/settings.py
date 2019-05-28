@@ -56,7 +56,7 @@ ROOT_URLCONF = 'mynotes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['mynotes/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

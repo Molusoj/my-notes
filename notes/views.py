@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def home(request):
     return render(request, 'notes/home.html')
+
+
+def cover(request):
+    return render(request, 'notes/cover.html')
