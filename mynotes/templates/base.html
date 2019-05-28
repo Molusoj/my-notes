@@ -2,7 +2,11 @@
 <html>
 
 <head>
-    <title>Michael Olusoji</title>
+    <title>
+        {% block title %}
+            My Notes
+        {% endblock title %}
+    </title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}" />
     <link rel="stylesheet" href="{% static 'css/all.css'%}" />
 

@@ -4,5 +4,6 @@ from . import views
 urlpatterns = [
 
     path('cover', views.cover, name='cover'),
-    path('create', views.create, name='create')
+    path('create', views.create, name='create'),
+    path('<int:note_id>', views.detail, name='detail')
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -6,18 +6,18 @@ from .models import Note
 from django.utils import timezone
 
 
+@login_required(login_url="/notes/cover")
 def home(request):
-    if User.is_authenticated:
-        return render(request, 'notes/home.html')
-    else:
-        redirect('cover')
+
+    notes = Note.objects
+    return render(request, 'notes/home.html', {'notes': notes})
 
 
 def cover(request):
     return render(request, 'notes/cover.html')
 
 
-@login_required
+@login_required(login_url="/notes/cover")
 def create(request):
     if request.method == 'POST':
         if request.POST['title'] and request.POST['note']:
@@ -26,9 +26,15 @@ def create(request):
             note.note = request.POST['note']
             note.manager = request.user
             note.save()
-            return redirect('home')
+            return redirect('/notes/' + str(note.id))
         else:
             return render(request, 'notes/create.html', {'error': 'All Fields Required'})
 
     else:
         return render(request, 'notes/create.html')
+
+
+@login_required(login_url="/notes/cover")
+def detail(request, note_id):
+    note = get_object_or_404(Note, pk=note_id)
+    return render(request, 'notes/detail.html', {'note': note})

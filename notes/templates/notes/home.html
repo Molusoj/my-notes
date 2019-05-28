@@ -1,6 +1,31 @@
 {% extends "base.html" %}
-
+ {% block title %}
+ 	My Notes
+ {% endblock title %}
 
 {% block content %}
-	Home!
+
+	{% for note in notes.all %}
+		
+		<div class="container card mt-3">
+		<div class="row">
+		<div class="col-12 card-title"><h1>{{note.title}} </h1></div>
+		</div>
+		<div class="row  ">
+			<div class="col-12 card-subtitle"><span><i class="fas fa-calender"></i></span>{{note.pub_date_pretty}}</div>
+		</div>
+		<div class="row ">
+			<div class="col-12 card-body">
+				<p>{{note.summary}}</p>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-4 card-footer">
+				<a href="{% url 'detail' note.id %}" class="btn btn-primary btn-link card-link text-white">View</a>
+			</div>
+		</div>
+		</div>
+	{% endfor %}
+
+	
 {% endblock content %}

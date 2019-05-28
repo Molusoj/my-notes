@@ -16,10 +16,10 @@ class Note(models.Model):
         return self.title
 
     def summary(self):
-        return self.body[:100]
+        return self.note[:200]
 
     def pub_date_pretty(self):
-        return self.date_added.strftime('%b %e %y')
+        return self.date_added.strftime('%b %e,%y')
 
     class meta:
         ordering = ('-date_added',)
